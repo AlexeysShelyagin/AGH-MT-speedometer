@@ -3,6 +3,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "config.h"
+#include "timer.h"
 
 volatile uint8_t port_prev_state;
 volatile uint8_t kb_event_flag = 0;
@@ -32,6 +33,8 @@ void init_keyboard(void){
 
     port_prev_state = PIN_KB;
 
+    init_millis_timer();
+
     sei();
 }
 
@@ -54,19 +57,19 @@ ISR(PCINT2_vect){
     uint8_t changed = PIN_KB ^ port_prev_state;
 
     if(changed & (1 << LEFT_BUT_PIN)){  // if state of button changed
-        kb_event_flag = 1;
-        if(PIN_KB ^ (1 << LEFT_BUT_PIN))
-            kb_event[0] = 1;
+        kb_event[0] = (PIN_KB >> LEFT_BUT_PIN) & 1;
+        if(kb_event[0])
+            kb_event_flag = 1;
     }
     if(changed & (1 << CENTER_BUT_PIN)){
-        kb_event_flag = 1;
-        if(PIN_KB ^ (1 << CENTER_BUT_PIN))
-            kb_event[1] = 1;
+        kb_event[1] = (PIN_KB >> CENTER_BUT_PIN) & 1;
+        if(kb_event[1])
+            kb_event_flag = 1;
     }
     if(changed & (1 << RIGHT_BUT_PIN)){
-        kb_event_flag = 1;
-        if(PIN_KB ^ (1 << RIGHT_BUT_PIN))
-            kb_event[2] = 1;
+        kb_event[2] = (PIN_KB >> RIGHT_BUT_PIN) & 1;
+        if(kb_event[2])
+            kb_event_flag = 1;
     }
 
     port_prev_state = PIN_KB;

@@ -3,6 +3,10 @@
 
 #include <avr/io.h>
 
+#define F_CPU 16000000UL
+
+
+
 #define LEFT_BUT_PIN PD4
 #define CENTER_BUT_PIN PD3
 #define RIGHT_BUT_PIN PD2
@@ -17,5 +21,7 @@
 #define PIN_KB PIND
 #define PCMSK_KB PCMSK2
 #define PCIE_KB PCIE2
+
+//#define BUT_FILTER_TIME 150
 
 #endif

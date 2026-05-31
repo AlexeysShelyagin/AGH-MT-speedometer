@@ -1,15 +1,16 @@
-#define F_CPU 16000000UL
-
 #include <stdlib.h>
+#include <stdio.h>
 #include <avr/io.h>
 #include <util/delay.h>
 
+#include "config.h"
 #include "display.h"
 #include "include/SH1106/FONT_courier_new_10pt_bold.h"
 
 #include "input.h"
+#include "timer.h"
 
-char test_str[] = "12345ABCD";
+uint8_t val = 127;
 
 int main(void) {
 	SH1106_I2C_SetDeviceAddress(SH1106_I2C_ADDRESS_1);
@@ -24,14 +25,18 @@ int main(void) {
 		for(uint8_t i = 0; i < 107; i++){
 			SH1106_I2C_DrawBoxFilled(0, 0, 127, 63, 0);
 			
-			char buttons_txt[3];
-
 			handle_kb_event();
-			buttons_txt[0] = left_but_click + '0';
-			buttons_txt[1] = center_but_click + '0';
-			buttons_txt[2] = right_but_click + '0';
+			if(left_but_click)
+				val--;
+			if(right_but_click)
+				val++;
+			if(center_but_click)
+				val = 127;
 
-			SH1106_I2C_DrawString(buttons_txt, 0, 0, courierNew_10ptFontInfo, 1);
+			char buff[15];
+			snprintf(buff, sizeof(buff), "%d", val);
+
+			SH1106_I2C_DrawString(buff, 0, 0, courierNew_10ptFontInfo, 1);
 			
 			
 			SH1106_I2C_UpdateDisplay();
