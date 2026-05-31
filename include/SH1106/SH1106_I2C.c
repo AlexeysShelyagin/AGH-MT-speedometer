@@ -685,7 +685,7 @@ void PUT_FUNCTION_IN_FLASH SH1106_I2C_DrawString(char* str, uint8_t x, uint8_t y
 				y_offset++;
 			}
 		}
-		x_offset += (char_width_bytes * 8);
+		x_offset += ((char_width_bytes-1) * 8);
 	}
 
 	if(_sh1106_i2c_debug)

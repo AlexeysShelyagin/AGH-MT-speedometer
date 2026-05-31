@@ -1,0 +1,26 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "AVR",
+
+            "compilerPath": "C:/Program Files/Microchip/xc8/v2.36/avr/bin/avr-gcc.exe",
+
+            "compilerArgs": [
+                "-mmcu=atmega328pb"
+            ],
+
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/Program Files/Microchip/xc8/v2.36/dfp/xc8/avr/include"
+            ],
+
+            "defines": [
+                "__AVR_ATmega328PB__"
+            ],
+
+            "cStandard": "c11",
+            "intelliSenseMode": "windows-gcc-x64"
+        }
+    ]
+}
