@@ -3,8 +3,9 @@
 
 #include <stdint.h>
 
-void init_millis_timer(void);
+extern volatile uint32_t __millis;
 
-extern volatile uint32_t millis;
+void init_millis_timer(void);
+uint32_t millis();
 
 #endif

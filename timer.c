@@ -3,7 +3,9 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-volatile uint32_t millis = 0;
+// we use ISR approach to measure time, due to AVRs dumb 16bit internal timer which constantly overflows
+
+volatile uint32_t __millis = 0;
 uint8_t millis_initialized = 0;
 
 void init_millis_timer(void){
@@ -17,6 +19,10 @@ void init_millis_timer(void){
     TIMSK0 = (1 << OCIE0A);
 }
 
+uint32_t millis(){
+    return __millis;
+}
+
 ISR(TIMER0_COMPA_vect){
-    millis++;
+    __millis++;
 }
