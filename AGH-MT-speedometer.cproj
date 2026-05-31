@@ -123,6 +123,12 @@
     <Compile Include="display.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="eeprom_data.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="eeprom_data.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="include\SH1106\FONT_courier_new_10pt_bold.c">
       <SubType>compile</SubType>
     </Compile>
@@ -187,6 +193,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="timer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ui.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ui.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

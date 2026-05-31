@@ -24,4 +24,13 @@
 
 //#define BUT_FILTER_TIME 150
 
+
+#define DEFAULT_WHEEL_SIZE 26
+#define MIN_WHEEL_SIZE 5
+#define MAX_WHEEL_SIZE 50
+static char WHEEL_SIZE_TEXT[] = "Your wheel size:";
+
+
+#define WHEEL_SIZE_EEPROM_ADDR 0
+
 #endif

@@ -8,6 +8,7 @@ extern uint8_t center_but_click;
 extern uint8_t right_but_click;
 
 void init_keyboard(void);
-void handle_kb_event(void);
+uint8_t handle_kb_event(void);
+void clear_kb_state(void);
 
 #endif

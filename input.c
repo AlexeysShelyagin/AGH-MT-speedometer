@@ -38,7 +38,9 @@ void init_keyboard(void){
     sei();
 }
 
-void handle_kb_event(void){
+uint8_t handle_kb_event(void){
+    uint8_t event_happened = kb_event_flag;
+
     if(kb_event_flag){
         left_but_click = kb_event[0];
         center_but_click = kb_event[1];
@@ -50,6 +52,11 @@ void handle_kb_event(void){
         left_but_click = center_but_click = right_but_click = 0;
     
     kb_event_flag = 0;  // mark event as handled
+    return event_happened;
+}
+
+void clear_kb_state(void){
+    left_but_click = center_but_click = right_but_click = 0;
 }
 
 
