@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <util/delay.h>
 #include "config.h"
 #include "input.h"
 #include "display.h"
@@ -36,6 +37,7 @@ void wheel_diameter_select_menu(float* wheel_size){
         }
         
         // get user input updates
+        _delay_ms(5);   // standby for clear interrupts
         event = handle_kb_event();
     }
 }
