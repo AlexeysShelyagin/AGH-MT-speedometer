@@ -6,6 +6,7 @@
 #define F_CPU 16000000UL
 
 
+// ----------------- KEYBOARD SETUP ----------------------------
 
 #define LEFT_BUT_PIN PD4
 #define CENTER_BUT_PIN PD3
@@ -14,6 +15,10 @@
 #define LEFT_BUT_INT PCINT20        // PD4
 #define CENTER_BUT_INT PCINT19      // PD3
 #define RIGHT_BUT_INT PCINT18       // PD2
+
+#define LEFT_BUT_INVERT 0
+#define CENTER_BUT_INVERT 0
+#define RIGHT_BUT_INVERT 0
 
 // set port D for keyboard register
 #define DDR_KB DDRD
@@ -24,13 +29,51 @@
 
 //#define BUT_FILTER_TIME 150
 
+// -----------------------------------------------------------------
+
+
+
+
+
+// ---------------------- SPEEDOMETER SETUP ------------------------
+
+#define SPD_TRIG_PIN PD5
+#define SPD_TRIG_INT PCINT21
+
+#define SPD_TRIG_INVERT 1
+
+#define DDR_SPD DDRD
+#define PORT_SPD PORTD
+#define PIN_SPD PIND
+#define PCMSK_SPD PCMSK2
+#define PCIE_SPD PCIE2
+
+#define SPD_TRIG_FILTER_TIME 30
+
+// -----------------------------------------------------------------
+
+
+
+
+
+// ----------------------- WHEEL PARAMETERS ------------------------
 
 #define DEFAULT_WHEEL_SIZE 26
+#define WHEEL_SIZE_TO_CIRCUMFERENCE(size) size*25.4*3.14159
 #define MIN_WHEEL_SIZE 5
 #define MAX_WHEEL_SIZE 50
 static char WHEEL_SIZE_TEXT[] = "Your wheel size:";
 
+// -----------------------------------------------------------------
+
+
+
+
+
+// --------------------------- EEPROM ------------------------------
 
 #define WHEEL_SIZE_EEPROM_ADDR 0
+
+// -----------------------------------------------------------------
 
 #endif

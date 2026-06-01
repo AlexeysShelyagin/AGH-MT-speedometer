@@ -11,4 +11,7 @@ void init_keyboard(void);
 uint8_t handle_kb_event(void);
 void clear_kb_state(void);
 
+void init_spd_trig(void);
+uint32_t get_spd_trig_delta(void);
+
 #endif
