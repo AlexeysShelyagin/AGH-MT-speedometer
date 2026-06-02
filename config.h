@@ -58,11 +58,20 @@
 
 // ----------------------- WHEEL PARAMETERS ------------------------
 
-#define DEFAULT_WHEEL_SIZE 26
 #define WHEEL_SIZE_TO_CIRCUMFERENCE(size) size*25.4*3.14159
+#define WHEEL_LEN_TO_KM(len) len / 1e6
+#define CALC_KMH(dt, len) len * 3.6f / dt
+
+#define DEFAULT_WHEEL_SIZE 26
 #define MIN_WHEEL_SIZE 5
 #define MAX_WHEEL_SIZE 50
+#define MIN_SPEED 2.0f
+
 static char WHEEL_SIZE_TEXT[] = "Your wheel size:";
+#define WHEEL_SCROLL_DISP_TEXT "< %.1f\" >"
+
+#define SPEED_DISP_TEXT "%.1f KMH"
+#define DIST_DISP_TEXT "%.2f KM"
 
 // -----------------------------------------------------------------
 

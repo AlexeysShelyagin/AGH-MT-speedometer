@@ -17,6 +17,9 @@ volatile uint8_t port_spd_prev_state;
 volatile uint32_t last_spd_trig_time = 0;
 volatile uint32_t spd_trig_time_delta = 0;
 
+float _spd = 0, _dist = 0;
+float *_wheel_len;
+
 void init_keyboard(void){
     cli();
 
@@ -65,7 +68,9 @@ void clear_kb_state(void){
 
 
 
-void init_spd_trig(void){
+void init_spd_trig(float *wheel_len){
+    _wheel_len = wheel_len;
+
     cli();
 
     DDR_SPD &= ~(1 << SPD_TRIG_PIN);         // Set input mode
@@ -86,6 +91,14 @@ void init_spd_trig(void){
 
 uint32_t get_spd_trig_delta(void){
     return spd_trig_time_delta;
+}
+
+float get_speed(void){
+    return _spd;
+}
+
+float get_dist(void){
+    return _dist;
 }
 
 
@@ -123,6 +136,9 @@ ISR(PCINT2_vect){
             if(__millis - last_spd_trig_time > SPD_TRIG_FILTER_TIME){
                 spd_trig_time_delta = __millis - last_spd_trig_time;
                 last_spd_trig_time = __millis;
+
+                _dist += WHEEL_LEN_TO_KM(*_wheel_len);
+                _spd = CALC_KMH(spd_trig_time_delta, *_wheel_len);
             }
         }
     }
